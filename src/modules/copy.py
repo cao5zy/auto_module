@@ -1,12 +1,6 @@
 from os.path import isfile, isdir, exists
 from shutil import rmtree, copytree, copy2
 
-def copy_dir(src, dest):
-    if exists(dest):
-        rmtree
-
-    copytree(src,dest)
-    
         
 
 def copy(param):
@@ -14,7 +8,7 @@ def copy(param):
     dest = param.dest
 
     if isdir(src):
-        copy_dir(src, dest)
+        copytree(src, dest)
     elif isfile(src):
         copy2(src, dest)
     else:
