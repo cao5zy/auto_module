@@ -25,8 +25,9 @@ def main():
     with open(get_config_path(), 'r', encoding='utf-8') as yaml_file:
         configs = load(yaml_file)
         for config in configs:
-            cmd = cmd_map[get_cmd_key(config)]
-            cmd(config)
+            cmd_key = get_cmd_key(config)
+            cmd = cmd_map[cmd_key]
+            cmd(config[cmd_key])
 
 if __name__ == '__main__':
     main()

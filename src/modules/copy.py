@@ -4,14 +4,13 @@ from shutil import rmtree, copytree, copy2
         
 
 def copy(param):
-    print('copy', param)    
-    src = param.src
-    dest = param.dest
+    src = param['src']
+    dest = param['dest']
 
     if isdir(src):
-        copytree(src, dest)
+        return copytree(src, dest)
     elif isfile(src):
-        copy2(src, dest)
+        return copy2(src, dest)
     else:
         raise Exception('不支持的复制类型')
         
