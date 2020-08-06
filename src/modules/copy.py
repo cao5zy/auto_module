@@ -4,6 +4,7 @@ from shutil import rmtree, copytree, copy2
         
 
 def copy(param):
+    print(param)
     src = param['src']
     dest = param['dest']
 
