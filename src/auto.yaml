@@ -1,3 +1,4 @@
 - name: copy files
   copy:
     src: xxx
+    dest: yyy

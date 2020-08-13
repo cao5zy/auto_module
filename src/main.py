@@ -1,6 +1,7 @@
 import sys
 from yaml import load, dump
 from modules import copy
+from os import path
 
 cmd_map = {
     "copy": copy
@@ -17,7 +18,7 @@ def get_cmd_key(config):
     return keys[0]
     
 def get_config_path ():
-    return sys.argv[1]
+    return sys.argv[1] 
 
 def main():
     print(get_config_path())
@@ -25,7 +26,8 @@ def main():
     with open(get_config_path(), 'r', encoding='utf-8') as yaml_file:
         configs = load(yaml_file)
         for config in configs:
-            print(get_cmd_key(config))
+            key = get_cmd_key(config)
+            cmd_map[key]({**config[key], **{'root': path.dirname(path.abspath(get_config_path()))}})
         
     
 
