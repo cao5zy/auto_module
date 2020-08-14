@@ -1,12 +1,12 @@
 from os.path import isfile, isdir, exists, join
 from shutil import rmtree, copytree, copy2
-from .util import getDictValue
-        
+from .util import getdictvalue
 
 def copy(param):
-    src = param['src'] if 'src' in param else None
-    dest = param['dest'] if 'dest' in param else None
-    root = param['root'] if 'root' in param else None
+    getval = getdictvalue(param)
+    src = getval('src')
+    dest = getval('dest')
+    root = getval('root')
 
     srcpath = join(root, src)
     destpath = join(root, dest)
