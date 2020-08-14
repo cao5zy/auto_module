@@ -1,6 +1,6 @@
 from os.path import isfile, isdir, exists, join
 from shutil import rmtree, copytree, copy2
-
+from .util import getDictValue
         
 
 def copy(param):
