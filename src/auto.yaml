@@ -1,4 +1,4 @@
 - name: copy files
   copy:
-    src: xxx
-    dest: yyyy
+    src: auto.yaml
+    dest: ../auto1.yaml

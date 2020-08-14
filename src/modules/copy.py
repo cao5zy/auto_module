@@ -1,17 +1,20 @@
-from os.path import isfile, isdir, exists
+from os.path import isfile, isdir, exists, join
 from shutil import rmtree, copytree, copy2
 
         
 
 def copy(param):
-    print(param)
-    src = param['src']
-    dest = param['dest']
+    src = param['src'] if 'src' in param else None
+    dest = param['dest'] if 'dest' in param else None
+    root = param['root'] if 'root' in param else None
 
-    if isdir(src):
-        return copytree(src, dest)
-    elif isfile(src):
-        return copy2(src, dest)
+    srcpath = join(root, src)
+    destpath = join(root, dest)
+    
+    if isdir(srcpath):
+        copytree(srcpath, destpath)
+    elif isfile(srcpath):
+        copy2(srcpath, destpath)
     else:
-        raise Exception('不支持的复制类型')
+        raise Exception('not supported file type')
         
