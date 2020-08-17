@@ -1,11 +1,12 @@
 import sys
 from yaml import load, dump
-from modules import copy, file
+from modules import copy, file, synchronize
 from os import path
 
 cmd_map = {
     "copy": copy,
     "file": file,
+    "synchroize": synchronize
 }
 
 cmd_keys = [key for key in cmd_map]
@@ -31,7 +32,7 @@ def main():
             result = cmd_map[key]({**config[key], **{'root': path.dirname(path.abspath(get_config_path()))}})
             if result == None:
                 print("fail at " + key)
-                print(result)
+                print(config[key])
                 break;
         
     
