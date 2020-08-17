@@ -1,19 +1,21 @@
-- name: make dir
-  file:
-    path: ../new_folder
-    state: directory
+tasks:
+  - ../auto.yaml
+  - name: make dir
+    file:
+      path: ../new_folder
+      state: directory
 
-- name: copy files
-  copy:
-    src: auto.yaml
-    dest: ../new_folder/auto1.yaml
+  - name: copy files
+    copy:
+      src: auto.yaml
+      dest: ../new_folder/auto1.yaml
 
-- name: make dir
-  file:
-    path: ../new_folder1
-    state: directory
-    
-- name: sync
-  synchroize:
-    src: ../new_folder/
-    dest: ../new_folder1/
+  - name: make dir
+    file:
+      path: ../new_folder1
+      state: directory
+
+  - name: sync
+    synchroize:
+      src: ../new_folder/
+      dest: ../new_folder1/
