@@ -1,10 +1,11 @@
 import sys
 from yaml import load, dump
-from modules import copy
+from modules import copy, file
 from os import path
 
 cmd_map = {
-    "copy": copy
+    "copy": copy,
+    "file": file,
 }
 
 cmd_keys = [key for key in cmd_map]

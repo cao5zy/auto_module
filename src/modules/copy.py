@@ -12,9 +12,9 @@ def copy(param):
     destpath = join(root, dest)
     
     if isdir(srcpath):
-        copytree(srcpath, destpath)
+        return copytree(srcpath, destpath)
     elif isfile(srcpath):
-        copy2(srcpath, destpath)
+        return copy2(srcpath, destpath)
     else:
         raise Exception('not supported file type')
         
