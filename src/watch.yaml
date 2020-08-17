@@ -1,0 +1,16 @@
+tasks:
+  - name: watch
+    watch:
+      paths:
+        - path: ../../phcardBag-wrapper/src/taro/pages/phCardbag/
+          ext:
+            - .js
+      tasks:
+        - name: make folder
+          file:
+            path: ../phcardbag/
+            state: directory
+        - name: sync files
+          synchroize:
+            src: ../../phcardBag-wrapper/src/taro/pages/phCardbag/
+            dest: ../phcardbag/

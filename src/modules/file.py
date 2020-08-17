@@ -8,7 +8,11 @@ def createdir(realpath):
     if exists(realpath):
         return 0
     else:
-        return makedirs(realpath)
+        try:
+            makedirs(realpath)
+            return 0
+        except Exception as e:
+            return None
     
 def file(param):
     getval = getdictvalue(param)
