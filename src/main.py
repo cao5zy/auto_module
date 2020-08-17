@@ -28,7 +28,11 @@ def main():
         configs = load(yaml_file)
         for config in configs:
             key = get_cmd_key(config)
-            cmd_map[key]({**config[key], **{'root': path.dirname(path.abspath(get_config_path()))}})
+            result = cmd_map[key]({**config[key], **{'root': path.dirname(path.abspath(get_config_path()))}})
+            if result == None:
+                print("fail at " + key)
+                print(result)
+                break;
         
     
 
