@@ -1,0 +1,7 @@
+tasks:
+  - name: run pylint
+    command:
+      cmd: pylint *.py
+      chdir: ./modules/
+      env: source .env/bin/activate
+      chenvdir: ../
