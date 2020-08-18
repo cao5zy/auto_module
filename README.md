@@ -25,8 +25,43 @@ python main.py auto.yaml
 
 # 功能模块
 ## watch
+```
+tasks:
+  - name: watch changes
+    watch:
+      paths:
+        - path: ./src/
+          ext:
+            - .js
+    tasks:
+      - ./lint.yaml
+      - name: pack files
+        command:
+          cmd: yarn build
+          chdir: ./
+```
+`watch`模块用于监视文件变动，当发现变动时，执行`tasks`中的任务。在`tasks`中，不可再次嵌套`watch`
+
 ## synchronize
+```
+tasks:
+  - name: synchronize files in folders
+    synchronize:
+      src: ./src/
+      dest: ../test/
+```
+用于同步`src`和`dest`中发生变化的文件，`src`和`dest`都是相对于当前文件所在目录的路径。
+
 ## file
+```
+tasks:
+  - name: create folder
+    file:
+      path: ../new_folder
+      state: directory
+```
+创建文件夹
+
 ## copy
 ```
 - name: copy file or directory
@@ -36,3 +71,13 @@ python main.py auto.yaml
 ```
 `src`和`dest`都是相对于当前文件所在目录的路径。
 ## command
+```
+tasks:
+  - name: run pylint
+    command:
+      cmd: pylint *.py
+      chdir: ./modules/
+      env: source .env/bin/activate
+      chenvdir: ../
+```
+用于执行命令。`cmd`和`chdir`为执行的命令以及命令所在的路径。`env`和`chenvdir`为执行cmd之前需要执行的命令，例如`pylint`是安装在虚拟环境中，先要启动虚拟环境。
