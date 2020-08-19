@@ -1,7 +1,8 @@
+import subprocess
+import sys
 from os.path import isdir, exists, join
 from os import makedirs
 from .util import getdictvalue
-import subprocess
 
 def command(param):
     getval = getdictvalue(param)
@@ -26,10 +27,7 @@ def command(param):
     cmdstr = getcmd()
     # cmdstr = 'cd /Users/caozy/Documents/projects/auto_module/src/../ && pwd && cd .env/bin/ && source activate'
     print('command:' + cmdstr)
-    
-    process = subprocess.Popen(cmdstr, stdout=subprocess.PIPE, shell=True, bufsize=1)
-    for line in iter(process.stdout.readline, b''):
-        print(str(line, encoding='utf-8').replace('\n', ''))
+    process = subprocess.Popen(cmdstr, stdout=sys.stdout, stderr=sys.stdout, shell=True, bufsize=0)
 
     return 0
         

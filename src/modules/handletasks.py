@@ -21,7 +21,7 @@ def get_taskpath(taskpath):
 def handletasks(cmd_map, taskpath, tasks=[]):
     for config in tasks if len(tasks) > 0 else loadtasks(taskpath):
         if isinstance(config, str):
-            handletasks(join(get_taskpath(taskpath), config))
+            handletasks(cmd_map, join(get_taskpath(taskpath), config))
         else:
             cmd_keys = [key for key in cmd_map]
             key = get_cmd_key(config, cmd_keys)
