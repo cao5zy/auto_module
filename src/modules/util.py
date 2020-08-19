@@ -1,5 +1,5 @@
 from fn.func import curried        
-from yaml import load
+from yaml import load, FullLoader
 from os.path import exists
 
 @curried
@@ -9,8 +9,8 @@ def getdictvalue(param, fieldname):
 
 def loadtasks(taskpath):
     if not exists(taskpath):
-        print('load task fail at:' + taskpath)
+        print('warning loadtasks fail at:' + taskpath)
         return []
     with open(taskpath, 'r', encoding='utf-8') as yaml_file:
-        configs = load(yaml_file)
+        configs = load(yaml_file, Loader=FullLoader)
         return configs['tasks'] or []

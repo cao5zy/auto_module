@@ -97,6 +97,9 @@ def reduceentries(entries):
 def getfilestime(param):
     srcpath = param[0]
     exts = param[1]
+    if not exists(srcpath):
+        print('warning watching path not valid at: {}'.format(srcpath))
+        
     return reduceentries(
         [genentry(filepath) for filepath in get_file_names(srcpath, exts)]
     )
