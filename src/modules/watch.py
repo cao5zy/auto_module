@@ -8,7 +8,7 @@ from .util import getdictvalue
 from .handletasks import handletasks
 from .cmd_map import cmd_map
 from gevent import monkey, spawn
-from time import sleep
+from time import sleep, strftime, localtime
 monkey.patch_all()
 
 oldfilestime = {}
@@ -115,7 +115,7 @@ def handle(rootpath, paths, tasks):
         [{**path, "path": join(rootpath, path["path"])} for path in paths]
     )
     if cmp(filestime, oldfilestime) != 0:
-        print('difference found')
+        print('{}: difference found'.format(strftime('%Y-%m-%d %H:%M:%S', localtime())))
         handletasks(cmd_map, rootpath, tasks)
         oldfilestime = filestime
 
