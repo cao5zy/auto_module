@@ -28,7 +28,7 @@ def command(param):
     # cmdstr = 'cd /Users/caozy/Documents/projects/auto_module/src/../ && pwd && cd .env/bin/ && source activate'
     print('command:' + cmdstr)
     process = subprocess.Popen(cmdstr, stdout=sys.stdout, stderr=sys.stdout, shell=True, bufsize=0)
-
+    process.wait()
     return 0
         
     
