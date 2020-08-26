@@ -28,7 +28,7 @@ def get_target_file_name(source_path, target_path):
         # print(target_path)
         # print(file_name)
         result =  join(target_path, file_name[len(source_path):])
-        print('copied:' + result)
+        # print('copied:' + result)
         return result
     return compose_target_path
 
