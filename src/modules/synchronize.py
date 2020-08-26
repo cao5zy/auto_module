@@ -23,7 +23,13 @@ def get_file_time(filePath):
 
 def get_target_file_name(source_path, target_path):
     def compose_target_path(file_name):
-        return join(target_path, file_name[len(source_path)+1:])
+        # print('get_target_file_name')
+        # print(source_path)
+        # print(target_path)
+        # print(file_name)
+        result =  join(target_path, file_name[len(source_path):])
+        print('copied:' + result)
+        return result
     return compose_target_path
 
 def get_copy_file(get_target_path):
@@ -51,7 +57,6 @@ def sync(srcpath, destpath):
 
     for source_file in transferred_files:
         ensure_dir(source_file)
-        print('copied:' + source_file)
         copy_file(source_file)
 
 
