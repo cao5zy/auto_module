@@ -33,7 +33,7 @@ def cmp(dict1, dict2):
 
 def get_file_names(dirName, exts=[]):
     fileList = []
-    for root, _, files in walk(dirName):
+    for root, _, files in walk(dirName, followlinks=True):
         if ".env" in root:
             continue
         if ".git" in root:
