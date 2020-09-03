@@ -23,14 +23,19 @@ def handletasks(cmd_map, taskpath, tasks=[]):
         if isinstance(config, str):
             handletasks(cmd_map, join(get_taskpath(taskpath), config))
         else:
-            if config['name']:
-                print('> ' + config['name'])
-            cmd_keys = [key for key in cmd_map]
-            key = get_cmd_key(config, cmd_keys)
-            result = cmd_map[key](
-                {**config[key], **{"root": get_taskpath(taskpath)}}
-            )
-            if result is None:
-                print("fail at " + key)
-                print(config[key])
-                break
+            try:
+                if config['name']:
+                    print('> ' + config['name'])
+                cmd_keys = [key for key in cmd_map]
+                key = get_cmd_key(config, cmd_keys)
+                result = cmd_map[key](
+                    {**config[key], **{"root": get_taskpath(taskpath)}}
+                )
+                if result is None:
+                    print("fail at " + key)
+                    print(config[key])
+                    break
+            except Exception as ex:
+                print('handle tasks error')
+                print(config)
+                raise ex
