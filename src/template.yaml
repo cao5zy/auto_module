@@ -1,0 +1,5 @@
+tasks:
+  - name: template
+    template:
+      src: ./template.txt
+      dest: ./out_template.txt

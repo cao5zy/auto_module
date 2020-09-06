@@ -1,10 +1,10 @@
 import sys
 from yaml import load, dump
-from modules import handletasks, cmd_map, watch
+from modules import handletasks, cmd_map, watch, Config, get_vars
 from os import path
 from os.path import join, dirname, abspath, exists
 from optparse import OptionParser
-from config import Config, getVars
+from functools import reduce
 # import codecs
 # sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach()) 
 
@@ -25,11 +25,11 @@ def parse(var):
 
 def main():
     (options, args) = parser.parse_args()
-    Config.initialize(vars=[parse(var) for var in options.vars])
+    Config.initialize(vars=reduce(lambda x,y:{**x,**y}, [parse(var) for var in options.vars], {}))
     print('args:')
     print(args)
     print('options')
-    print(getVars())
+    print(get_vars())
 
     handletasks({**cmd_map, "watch": watch}, get_config_path())
     
