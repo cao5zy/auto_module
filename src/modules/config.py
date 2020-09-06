@@ -6,4 +6,4 @@ class Config(object):
         self.vars = vars
 
 def get_vars():
-    return Config.instance().vars
+    return Config.instance().vars or {}

@@ -18,6 +18,9 @@ def template(param):
     src = getval('src')
     dest = getval('dest')
     root = getval('root')
+    vars = getval('vars')
+    print('vars')
+    print(vars)
 
     srcpath = join(root, src)
     destpath = join(root, dest)
@@ -28,7 +31,7 @@ def template(param):
     try:
         env = Environment(loader=FileSystemLoader(root))
         tpl = env.get_template(src)
-        writeContent(destpath, tpl.render(get_vars()))
+        writeContent(destpath, tpl.render({ **vars, **get_vars()}))
     except Exception as ex:
         raise ValueError('%s\n template:%s'%(repr(ex), srcpath))
 

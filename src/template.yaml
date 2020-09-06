@@ -3,3 +3,5 @@ tasks:
     template:
       src: ./template.txt
       dest: ./out_template.txt
+      vars:
+        x: Alan

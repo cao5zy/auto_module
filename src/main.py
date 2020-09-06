@@ -9,7 +9,7 @@ from functools import reduce
 # sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach()) 
 
 parser = OptionParser()
-parser.add_option('-e', '--extra-vars', action='append', type='string', dest='vars')
+parser.add_option('-e', '--extra-vars', action='append', type='string', dest='vars', default=[])
 def get_config_path ():
     (_, args) = parser.parse_args()
     return args[0] 
